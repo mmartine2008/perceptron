@@ -3,11 +3,14 @@
     class Perceptron {
 
         private $y = 0;
-        private $w = [0, 0];
+        private $w = [];
         private $u = 0.5;
+        private $set = [];
 
-        public function __construct($u) {
+        public function __construct($u, $w, $set) {
             $this->u = $u;
+            $this->w = $w;
+            $this->set = $set;
         }
 
         /**
@@ -40,20 +43,9 @@
             }
         }
 
-        public function crearSet() {
-            $salida = [
-                [[0, 0], 0],
-                [[0, 1], 0],
-                [[1, 0], 0],
-                [[1, 1], 1],
-            ];
-            return $salida;
-        }
-
         function aprender() {
-            $set = $this->crearSet();
 
-            foreach ($set as $row) {
+            foreach ($this->set as $row) {
                 $x = $row[0];
                 $z = $row[1];
 

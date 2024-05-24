@@ -1,14 +1,19 @@
 <?php
     require_once("Perceptron.php");
-    require_once("Perceptron2.php");
 
     function test1() {
-        $p = new Perceptron(0.5);
+        $salida = [
+            [[0, 0], 0],
+            [[0, 1], 0],
+            [[1, 0], 0],
+            [[1, 1], 1],
+        ];
+
+        $p = new Perceptron(0.5, [0, 0], $salida);
 
         $p->aprender();
 
-        $set = $p->crearSet();
-        foreach ($set as $row) {
+        foreach ($salida as $row) {
             $x = $row[0];
             $z = $row[1];
             $y = $p->f_x($x);
@@ -21,14 +26,20 @@
     }
 
     function test2() {
-        $p = new Perceptron2(0.5);
+        $salida = [
+            [[0, 0, rand(0, getrandmax()) / getrandmax()], 0],
+            [[0, 1, rand(0, getrandmax()) / getrandmax()], 0],
+            [[1, 0, rand(0, getrandmax()) / getrandmax()], 0],
+            [[1, 1, rand(0, getrandmax()) / getrandmax()], 1],
+        ];
 
-        for ($i = 0; $i<4; $i++) {
+        $p = new Perceptron(0.5, [0, 0, 0], $salida);
+
+        for ($i = 0; $i<10; $i++) {
             $p->aprender();
         }      
 
-        $set = $p->crearSet();
-        foreach ($set as $row) {
+        foreach ($salida as $row) {
             $x = $row[0];
             $z = $row[1];
             $y = $p->f_x($x);
