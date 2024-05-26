@@ -35,20 +35,11 @@
 
         $p = new Perceptron(0.5, [0, 0, 0], $salida);
 
-        for ($i = 0; $i<10; $i++) {
-            $p->aprender();
-        }      
+        $p->iterarAprendizaje(3);
 
-        foreach ($salida as $row) {
-            $x = $row[0];
-            $z = $row[1];
-            $y = $p->f_x($x);
+        echo "Ratio de exito: ".$p->obtenerResultados();
 
-            echo "A:". $x[0]." B:".$x[1];
-            echo " Salida esperada: ".$z;
-            echo " Salida obtenida: ".$y;
-            echo "\n";
-        }
+        echo "\n";
     }
 
     test2();

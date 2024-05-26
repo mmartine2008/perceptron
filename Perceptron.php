@@ -52,5 +52,32 @@
                 $this->ciclar($x, $z);
             }
         }
+
+        function iterarAprendizaje($ciclos)
+        {
+            for ($i = 0; $i < $ciclos; $i++) {
+                $this->aprender();
+            }
+        }
+
+        function obtenerResultados() {
+            $pruebas = 0;
+            $error = 0;
+
+            foreach ($this->set as $row) {
+                $x = $row[0];
+                $z = $row[1];
+                $y = $this->f_x($x);
+    
+                if ($z != $y)
+                {
+                    $error++;
+                }
+                $pruebas++;
+
+            }
+            $ratio = $error / $pruebas;
+            return $ratio;    
+        }
     }
 
