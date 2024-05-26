@@ -33,13 +33,22 @@
             [[1, 1, rand(0, getrandmax()) / getrandmax()], 1],
         ];
 
-        $p = new Perceptron(0.5, [0, 0, 0], $salida);
+        $resultados = [];
+        for ($i = 0; $i < 10; $i++) {
 
-        $p->iterarAprendizaje(3);
-
-        echo "Ratio de exito: ".$p->obtenerResultados();
-
-        echo "\n";
+            $cant_pruebas = 10;
+            $acum = 0;
+            for ($pruebas = 0; $pruebas < $cant_pruebas; $pruebas++) {
+                $p = new Perceptron(0.5, [0, 0, 0], $salida);
+                $p->iterarAprendizaje($i);
+                $ratio = $p->obtenerResultados();
+                $acum = $acum + $ratio;
+            }
+            $promedio = $acum / $cant_pruebas;
+            $resultados[$i] = $promedio;
+    
+        }
+        print_r($resultados);
     }
 
     test2();
